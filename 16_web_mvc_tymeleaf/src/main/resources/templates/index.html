@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Product Details :</h2>
+	<font color="green" th:text="${msg}"></font>
+	<form th:action="@{/save}" method="POST" th:object="${product}" autocomplete="off">
+		<table>
+			<tr>
+				<td>Name :</td>
+				<td><input type="text" th:field="*{name}"></td>
+			</tr>
+			<tr>
+				<td>Price :</td>
+				<td><input type="text" th:field="*{price}"></td>
+			</tr>
+			<tr>
+				<td>Quantity :</td>
+				<td><input type="text" th:field="*{quantity}"></td>
+			</tr>
+            <tr><td><input type="submit" value="Save"></td></tr>
+<tr><td><a th:href="@{/view}" >View Products</a></td></tr>
+		</table>
+
+	</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<a th:href="@{/}">+ Save Product</a>
+	<table border="3">
+		<thead>
+			<tr>
+				<th>Sr. No</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Quantity</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product , index :${products}">
+				 <td th:text="${index.index + 1}"></td>
+				<td th:text="${product.name}"></td>
+				<td th:text="${product.price}"></td>
+				<td th:text="${product.quantity}"></td>
+			</tr>
+		</tbody>
+
+
+	</table>
+</body>
+</html>

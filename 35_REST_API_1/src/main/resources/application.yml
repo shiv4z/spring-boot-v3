@@ -1,0 +1,23 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: WELCOME_API
+  boot:
+    admin:
+      client:
+        url: http://localhost:1111/     
+
+
+# application.yml
+management:
+  tracing:
+    enabled: true
+  zipkin:
+    tracing:
+      enabled: true
+      endpoint: http://localhost:9411/api/v2/spans
+    sender:
+      type: web
+    baseUrl: http://localhost:9411
+    enabled: true

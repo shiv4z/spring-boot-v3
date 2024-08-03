@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: 31_phonebook_api
+  datasource:
+    username: root
+    password: root
+    url: jdbc:h2:mem:shiv
+    driver-class-name: org.h2.Driver

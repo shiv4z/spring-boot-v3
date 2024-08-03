@@ -1,0 +1,20 @@
+package in.shiv.binding;
+
+import java.io.File;
+import java.io.FileWriter;
+
+import com.google.gson.Gson;
+
+public class JsonToJava {
+	public static void main(String[] args) {
+		File f = new File("customer.json");
+		Gosn gson = new Gson();
+		try(FileWriter writer = new FileWriter(f)){
+			g
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}

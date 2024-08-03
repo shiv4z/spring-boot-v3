@@ -1,0 +1,121 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "OpenAPI definition",
+		"version": "v0"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:8080",
+			"description": "Generated server url"
+		}
+	],
+	"paths": {
+		"/book": {
+			"post": {
+				"tags": [
+					"booking-rest-controller"
+				],
+				"operationId": "bookTicket",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Passenger"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Ticket"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/ticket/{ticketId}": {
+			"get": {
+				"tags": [
+					"booking-rest-controller"
+				],
+				"operationId": "getTicket",
+				"parameters": [
+					{
+						"name": "ticketId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int32"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Ticket"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Passenger": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"source": {
+						"type": "string"
+					},
+					"destination": {
+						"type": "string"
+					},
+					"date": {
+						"type": "string",
+						"format": "date"
+					},
+					"trainNo": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"cost": {
+						"type": "number",
+						"format": "double"
+					}
+				}
+			},
+			"Ticket": {
+				"type": "object",
+				"properties": {
+					"ticketId": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"status": {
+						"type": "string"
+					},
+					"passenger": {
+						"$ref": "#/components/schemas/Passenger"
+					}
+				}
+			}
+		}
+	}
+}

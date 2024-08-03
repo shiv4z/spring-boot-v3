@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customer>
+	<address>
+		<city>Varanasi</city>
+		<country>India</country>
+		<state>Uttar Pradesh</state>
+	</address>
+	<cid>102</cid>
+	<name>Shiv Prasad</name>
+	<phoneNo>9506108463</phoneNo>
+</customer>

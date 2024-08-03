@@ -1,0 +1,122 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "OpenAPI definition",
+		"version": "v0"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:8080",
+			"description": "Generated server url"
+		}
+	],
+	"paths": {
+		"/save": {
+			"post": {
+				"tags": [
+					"phone-rest-controller"
+				],
+				"operationId": "save",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/PhoneBook"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "object"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/contacts": {
+			"get": {
+				"tags": [
+					"phone-rest-controller"
+				],
+				"operationId": "getAllContacts",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "object"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/contact/{id}": {
+			"get": {
+				"tags": [
+					"phone-rest-controller"
+				],
+				"operationId": "getContactById",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int32"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/PhoneBook"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"PhoneBook": {
+				"required": [
+					"email",
+					"name",
+					"phoneNo"
+				],
+				"type": "object",
+				"properties": {
+					"phoneNo": {
+						"maximum": 10,
+						"minimum": 10,
+						"type": "integer",
+						"format": "int64"
+					},
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
+}

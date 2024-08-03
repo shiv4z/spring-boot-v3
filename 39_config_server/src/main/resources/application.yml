@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: 39_config_server
+
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/shiv4z/configuration_properties

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<form th:action="@{/book}" th:object="${passenger}" method="POST">
+		<table>
+			<tr style="color: green">
+				<td>Your Ticket Booking Id :</td>
+				<td th:text="${ticket}"></td>
+			</tr>
+			<tr>
+				<td>Name :</td>
+				<td><input type="text" th:field="*{name}" /></td>
+			</tr>
+			<tr>
+				<td>Source :</td>
+				<td><input type="text" th:field="*{source}" /></td>
+			</tr>
+			<tr>
+				<td>Destination :</td>
+				<td><input type="text" th:field="*{destination}" /></td>
+			</tr>
+			<tr>
+				<td>Date :</td>
+				<td><input type="text" th:field="*{date}" /></td>
+			</tr>
+			<tr>
+				<td>Train No :</td>
+				<td><input type="number" th:field="*{trainNo}" /></td>
+			</tr>
+			<tr>
+				<td>Cost :</td>
+				<td><input type="number" th:field="*{cost}" /></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Book Ticket" /></td>
+			</tr>
+		</table>
+
+	</form>
+	<a th:href="@{/view}">View Ticket Data</a>
+</body>
+</html>

@@ -1,0 +1,5 @@
+INDEX VERSION 1.4+D:\ASHOKIT_2023\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+369375612.index
+555164106.index
+1315534050.index
+3161384353.index

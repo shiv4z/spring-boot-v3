@@ -1,0 +1,10 @@
+{
+	"cid": 101,
+	"name": "Shiv Prasad",
+	"phoneNo": 9506108463,
+	"address": {
+		"city": "Varanasi",
+		"state": "Uttar Pradesh",
+		"country": "India"
+	}
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action="@{/ticket}" th:object="${ticket}">
+		<table>
+			<tr>
+				<td>Enter Ticket Id :</td>
+				<td><input type="number" th:field="*{ticketId}"></td>
+				<td><input type="submit" value="Search" /></td>
+			</tr>
+		</table>
+	</form>
+	<hr>
+	<div th:if="${ticket != null} and ${ticket.passenger != null}">
+		<h3>Ticket Details :</h3>
+		<table>
+			<tr>
+				<td>Name :</td>
+				<td th:text="${ticket.passenger.name}"></td>
+			</tr>
+			<tr>
+				<td>Source :</td>
+				<td th:text="${ticket.passenger.source}"></td>
+			</tr>
+			<tr>
+				<td>Destination :</td>
+				<td th:text="${ticket.passenger.destination}"></td>
+			</tr>
+			<tr>
+				<td>Date :</td>
+				<td th:text="${ticket.passenger.date}"></td>
+			</tr>
+			<tr>
+				<td>Cost :</td>
+				<td th:text="${ticket.passenger.cost}"></td>
+			</tr>
+			<tr>
+				<td>Train No. :</td>
+				<td th:text="${ticket.passenger.trainNo}"></td>
+			</tr>
+			<tr>
+				<td>Status :</td>
+				<td th:text="${ticket.status}"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

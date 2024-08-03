@@ -1,0 +1,10 @@
+{
+	"cid": 101,
+	"name": "Charles",
+	"phoneNo": 9506108463,
+	"address": {
+		"city": "New Delhi",
+		"state": "New Delhi",
+		"country": "India"
+	}
+}

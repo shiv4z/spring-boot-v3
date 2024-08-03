@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Stripe Payment Form</title>
+</head>
+<body>
+
+<form id="payment-form" action="" method="">
+  <input type="text" name="name" placeholder="Your Name" required><br>
+  <input type="email" name="email" placeholder="Your Email" required><br>
+  <input type="number" name="amount" placeholder="Amount (in cents)" required><br>
+  <div id="card-element">
+    <!-- A Stripe Element will be inserted here. -->
+  </div>
+
+  <!-- Used to display form errors. -->
+  <div id="card-errors" role="alert"></div>
+
+  <!-- Used to display success message. -->
+  <div id="payment-success" role="alert" style="display: none; color: green;"></div>
+
+  <button type="submit">Submit Payment</button>
+</form>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe('pk_test_51PPeU32K4fybzJQFXotGOqHOd90mp0OUqFFYSzFbHGUb3AjpTIgG05PFAe1uTBWxPSG1aMZP3FdQVINrHbAkT9IS009Dy4cYpk');
+  var elements = stripe.elements();
+  var card = elements.create('card');
+  card.mount('#card-element');
+
+  // Handle form submission
+  var form = document.getElementById('payment-form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get the payment amount
+    var amount = document.querySelector('input[name="amount"]').value;
+
+    // Create a PaymentIntent on the server and get its client secret
+    fetch('/api/create-payment-intent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ amount: amount })
+    })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      if (!data.client_secret) {
+        throw new Error('Failed to retrieve client secret');
+      }
+
+      stripe.confirmCardPayment(data.client_secret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: document.querySelector('input[name="name"]').value,
+            email: document.querySelector('input[name="email"]').value
+          }
+        }
+      }).then(function(result) {
+        if (result.error) {
+          // Show error to your customer (e.g., insufficient funds)
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          // The payment has been processed!
+          if (result.paymentIntent.status === 'succeeded') {
+            // Show a success message to your customer
+            var successElement = document.getElementById('payment-success');
+            successElement.textContent = 'Payment successful! Thank you for your purchase.';
+            successElement.style.display = 'block';
+          }
+        }
+      });
+    })
+    .catch(function(error) {
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = error.message;
+    });
+  });
+</script>
+</body>
+</html>

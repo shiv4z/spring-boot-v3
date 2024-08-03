@@ -1,0 +1,16 @@
+package in.shiv.rest;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("api-gateway")
+public class WelcomeRestController {
+	
+	@GetMapping("/demo")
+	public String invokeMsg() {
+		return "Hello Api GateWay!!!";
+	}
+
+}

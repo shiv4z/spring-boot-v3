@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: 30_spring_boot_actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: info,health

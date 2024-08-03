@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+        routes:
+          - id: GREET_API_ID
+            uri: lb://GREET-API
+            predicates:
+              - Path=/greet
+          - id: WELCOME_API_ID
+            uri: lb://WELCOME-API
+            predicates:
+              - Path=/welcome
+    compatibility-verifier:
+      enabled: false
+
+server:
+  port: 2222
+  

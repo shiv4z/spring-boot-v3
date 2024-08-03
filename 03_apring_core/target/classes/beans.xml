@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean id="disel" class="in.shiv.DiselEngine" scope="prototype" primary="true"/>
+    <bean id="petrol" class="in.shiv.PetrolEngine" />
+    <bean id="service" class="in.shiv.CarService" autowire="byType">
+   <!--  <constructor-arg ref="petrol" /> -->
+   <!-- <property name="eng" ref="disel"></property> -->
+    </bean>
+
+</beans>
