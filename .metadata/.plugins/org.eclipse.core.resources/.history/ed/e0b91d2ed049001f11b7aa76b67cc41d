@@ -1,0 +1,6 @@
+package in.shiv.service;
+
+@Service
+public class LoanService {
+
+}

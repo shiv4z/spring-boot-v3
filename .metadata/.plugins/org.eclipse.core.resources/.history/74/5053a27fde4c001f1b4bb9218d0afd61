@@ -1,0 +1,17 @@
+package in.shiv.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import in.shiv.binding.Employee;
+import in.shiv.service.EmployeeService;
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService{
+
+	@Override
+	public Boolean save(Employee employee) {
+		Boolean flag = Boolean.FALSE;
+		return null;
+	}
+
+}

@@ -1,0 +1,35 @@
+package in.shiv.service;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import in.shiv.binding.Rate;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
+@Service
+public class LoanService {
+	
+	
+	private RestTemplate template;
+	private CircuitBreakerFactory cbFactory;
+	
+	public LoanService(RestTemplate template, CircuitBreakerFactory cbFactory) {
+		this.template = template;
+		this.cbFactory = cbFactory;
+	}
+	
+	@CircuitBreaker(name = "loan-service", fallbackMethod = "fallback")
+	public Rate gerRate(String type) {
+		String url = "http://localhost:8080/rate?type={type}";
+		ResponseEntity<Rate> forEntity = template.getForEntity(url, Rate.class, type);
+		return forEntity.getBody();
+	}
+
+	public Rate fallback(Throwable t) {
+		System.out.println("******** fallback method calling *********");
+		Rate rate = new Rate();
+		// return new ResponseEntity<>(rate, HttpStatus.OK);
+		return rate;
+	}
+}

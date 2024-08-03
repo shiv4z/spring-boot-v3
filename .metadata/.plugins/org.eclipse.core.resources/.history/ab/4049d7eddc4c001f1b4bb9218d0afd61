@@ -1,0 +1,5 @@
+package in.shiv.entity;
+
+public class Emloyee {
+
+}

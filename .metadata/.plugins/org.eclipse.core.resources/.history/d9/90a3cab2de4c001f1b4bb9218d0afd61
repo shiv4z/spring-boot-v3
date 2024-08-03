@@ -1,0 +1,25 @@
+package in.shiv.serviceImpl;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import in.shiv.binding.EmployeeModel;
+import in.shiv.entity.Employee;
+import in.shiv.repo.EmployeeRepo;
+import in.shiv.service.EmployeeService;
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService{
+
+	@Autowired
+	private EmployeeRepo repo;
+	
+	@Override
+	public Boolean save(EmployeeModel employee) {
+		Boolean flag = Boolean.FALSE;
+		BeanUtils.copyProperties(employee, new Employee());
+		return null;
+	}
+
+}

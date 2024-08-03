@@ -1,0 +1,20 @@
+package in.shiv.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import in.shiv.binding.Book;
+
+@RestController
+public class BookRestController {
+	
+	@GetMapping(value="/book", produces={"application/json","application/xml"})
+	public Book getBooks() {
+		
+		Book book = new Book();
+		book.setId(101);
+		book.setName("SpringBoot");
+		book.setPrice(400.0);
+		return book;
+	}
+
+}

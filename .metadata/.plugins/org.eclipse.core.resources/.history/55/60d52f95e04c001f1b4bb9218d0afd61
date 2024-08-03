@@ -1,0 +1,9 @@
+package in.shiv.service;
+
+import in.shiv.binding.EmployeeModel;
+
+public interface EmployeeService {
+	
+	public Boolean save(EmployeeModel employee);
+
+}

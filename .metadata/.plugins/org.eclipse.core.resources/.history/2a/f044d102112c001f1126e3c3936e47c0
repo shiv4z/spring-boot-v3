@@ -1,0 +1,16 @@
+package in.shiv.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import in.shiv.binding.Book;
+
+@RestController
+public class BookRestController {
+	
+	public Book getBooks() {
+		
+		Book book = new Book();
+		book.set
+	}
+
+}

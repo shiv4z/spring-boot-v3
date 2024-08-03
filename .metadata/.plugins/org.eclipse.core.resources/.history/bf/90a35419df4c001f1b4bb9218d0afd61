@@ -1,0 +1,17 @@
+package in.shiv.binding;
+
+import lombok.Data;
+
+@Data
+public class EmployeeModel {
+	
+	private String firstName;
+	private String lastName;
+	private String password;
+	private String email;
+	private String role;
+	private String designation;
+	private Double salary;
+	
+
+}

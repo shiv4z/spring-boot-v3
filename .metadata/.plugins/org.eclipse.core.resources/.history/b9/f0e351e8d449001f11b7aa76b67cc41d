@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: 43_loan_app
+server:
+  port: 9090
+resilience4j:
+  circuitbreaker:
+    instances:
+      loan-service:
+        registerHealthIndicator: true
+        slidingWindowSize: 100
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        automatic-transition-from-open-to-half-open-enabled: true
+        waitDurationInOpenState: 100s
+        record-exceptions: IOException, TimeoutException
+        permittedNumberOfCallsInHalfOpenState: 5
+        slidingWindowType: COUNT_BASED
+        

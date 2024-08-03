@@ -1,0 +1,62 @@
+package in.shiv.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import in.shiv.binding.EmployeeModel;
+import in.shiv.service.EmployeeService;
+
+@Controller
+public class EmployeeController {
+
+	@Autowired
+	private EmployeeService service;
+
+	@GetMapping("/")
+	public String loadPage() {
+		return "employee";
+	}
+
+	@PostMapping(value = "/register", produces = "application/json")
+	@ResponseBody
+	public ResponseEntity<String> saveEmployee(@RequestBody EmployeeModel employee) {
+		String msg = "";
+		System.out.println("Employee data: " + employee);
+		Boolean status = service.save(employee);
+		if (status) {
+			msg = "Data saved successfully.";
+		} else {
+			msg = "Some problem occurred to save the data.";
+		}
+		return new ResponseEntity<>(msg, HttpStatus.CREATED);
+	}
+
+	@GetMapping(value = "/employees", produces = "application/json")
+	@ResponseBody
+	public ResponseEntity<List<EmployeeModel>> getEmployeeData() {
+		List<EmployeeModel> employeeList = service.findAll();
+		return new ResponseEntity<>(employeeList, HttpStatus.OK);
+	}
+
+	@GetMapping("/loadData")
+	public String loadEmployeeData() {
+		return "loadData";
+	}
+
+	@DeleteMapping("/delete")
+	public ResponseEntity<String> deleteEmployeeData(@PathVariable("employeeId") Integer employeeId) {
+		System.out.println(employeeId);
+		return new ResponseEntity<>("deleted successfully." ,HttpStatus.OK);
+	}
+}

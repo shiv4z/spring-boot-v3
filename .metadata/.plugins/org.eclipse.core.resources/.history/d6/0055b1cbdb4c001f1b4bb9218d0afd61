@@ -1,0 +1,28 @@
+package in.shiv.rest;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import in.shiv.binding.Employee;
+
+@Controller
+public class EmployeeController {
+	
+	@GetMapping("/")
+	public String loadPage() {
+		return "employee";
+	}
+	
+	@PostMapping("/register")
+	@ResponseBody
+	public ResponseEntity<String> saveEmployee(@RequestBody Employee employee){
+		System.out.println("Employee data: "+ employee);
+		return new ResponseEntity<>("saved successfully", HttpStatus.CREATED);
+	}
+
+}

@@ -1,0 +1,19 @@
+package in.shiv.service;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import in.shiv.binding.Rate;
+
+@Service
+public class LoanService {
+	
+	private RestTemplate template;
+	
+	public Rate gerRate(String type) {
+		String url = "http://localhost:8080/rate?type={type}";
+		ResponseEntity<Rate> forEntity = template.getForEntity(url, Rate.class, type);
+	}
+
+}
